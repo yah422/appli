@@ -7,27 +7,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
-<body style="display:flex; flex-direction: column;" >
-    <?php 
-
-    session_start();
-
-    function calculerNombreProduit(){
-    $nbrTotal = 0;
-    foreach($_SESSION['products'] as $index => $product){
-        $nbrTotal = $index;
-    }
-    return $nbrTotal;
-    }
-    
-    echo calculerNombreProduit();
-
-    ?>
+<body style="display:flex; flex-direction: column; align-items: center; align-content: center; justify-content: center;" >
+   <section style="border:1px solid black; width:500px; height: 600px;     display: flex; justify-content: space-evenly; align-items: center; flex-direction: column;" >
     <div style="display: flex; gap:2" class="p-0">
 
         <div  class="d-grid gap-2 d-md-block">
         <button type="button" class="btn btn-primary"> <a style="text-decoration:none; color: white;"  href="index.php"> Ajouter produit </a> </button>
-        <button type="button" class="btn btn-white text-primary" > <a style="text-decoration:none;" href="recap.php"> Panier </a>  </button>
+       
+
+        <button type="button" class="btn btn-white text-primary" > <a style="text-decoration:none;" href="recap.php">
+         Panier </a>  </button> 
+        
+        </div>
+        <div style=" color:white; display:flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; border-radius:100px; background-color:red; width:30px; height:20px" >
+        <?php 
+    
+        session_start();
+
+        function calculerNombreProduit(){
+        $nbrTotal = 0;
+        foreach($_SESSION['products'] as $index => $product){
+            $nbrTotal = $index;
+        }
+        return $nbrTotal;
+        }
+    
+        echo calculerNombreProduit(); ?>
         </div>
 
     </div>
@@ -60,6 +65,19 @@
         </p>
     </form>
     </div>
+    <div>
+
+        <?php 
+
+        if(isset($_SESSION['message'])){
+            echo $_SESSION['message'];
+            unset($_SESSION['message']); 
+        }
+
+        ?>
+
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    </section>
 </body>
 </html>

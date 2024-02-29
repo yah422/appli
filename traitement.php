@@ -30,10 +30,12 @@ if(isset($_POST['submit'])){
         ];
 
         $_SESSION['products'][]= $product;
-
+        
+        $_SESSION['message'] = " Votre produit à bien été enregistré ! ";
     }
 
 }
+
 
 header("Location:index.php");
 
