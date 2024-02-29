@@ -4,22 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Ajout produit </title>
-    <link rel="stylesheet" href="recap.php">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
 <body>
-    <div style="display: flex; gap:0" class="p-0">
-        <div>
-        <p class="p-4 pb-0 mr-0">
-                <input class="form-control bg-primary text-white text-center" style="width:150px; height:40px;" type="submit" name="submit" value="Ajouter produit">    
-        </p>
-        </div>
+    <?php 
 
-        <div>
-        <p class="p-4 pb-0 ml-0">
-                <input class="form-control bg-white text-primary text-center" style="width:80px; height:40px;" type="submit" name="submit" value="Panier">    
-        </p>
+    session_start();
+
+    $panier= $_SESSION['products'];
+    function calculerNombreProduit(){
+    $nbrTotal = 0;
+
+    foreach( $panier as $quantite){
+    $nbrTotal += $quantite;
+    }
+    return $nbrTotal;
+    }
+
+    $nbrProduitPanier = calculerNombreProduit($panier);
+
+    ?>
+    <div style="display: flex; gap:2" class="p-0">
+
+        <div  class="d-grid gap-2 d-md-block">
+        <button type="button" class="btn btn-primary"> <a style="text-decoration:none; color: white;"  href="index.php"> Ajouter produit </a> </button>
+        <button type="button" class="btn btn-white text-primary" > <a style="text-decoration:none;" href="recap.php"> Panier </a>  </button>
         </div>
 
     </div>
@@ -53,6 +63,5 @@
     </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    
 </body>
 </html>
