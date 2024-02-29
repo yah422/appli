@@ -7,22 +7,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
 </head>
-<body>
+<body style="display:flex; flex-direction: column;" >
     <?php 
 
     session_start();
 
-    $panier= $_SESSION['products'];
     function calculerNombreProduit(){
     $nbrTotal = 0;
-
-    foreach( $panier as $quantite){
-    $nbrTotal += $quantite;
+    foreach($_SESSION['products'] as $index => $product){
+        $nbrTotal = $index;
     }
     return $nbrTotal;
     }
-
-    $nbrProduitPanier = calculerNombreProduit($panier);
+    
+    echo calculerNombreProduit();
 
     ?>
     <div style="display: flex; gap:2" class="p-0">
