@@ -36,6 +36,16 @@ if(isset($_POST['submit'])){
 
 }
 
+if(isset($_GET['action'])){
+
+    switch($_GET['action']){
+        case "ajout":
+        case "supprimer":
+        case "suppTout":
+        case "ajoutQtt":
+        case "retirerQtt":
+    }
+}
 
 header("Location:index.php");
 
