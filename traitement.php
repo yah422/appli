@@ -31,8 +31,8 @@ if(isset($_POST['submit'])){
 
         $_SESSION['products'][]= $product;
         
-        $_SESSION['message'] = " Votre produit à bien été enregistré ! ";
-    }
+        $_SESSION['message'] = '<div class="alert alert-success" role="alert"> Votre produit à bien été enregistré ! </div>';
+        }
 
 }
 
@@ -40,3 +40,4 @@ if(isset($_POST['submit'])){
 header("Location:index.php");
 
 ?>
+

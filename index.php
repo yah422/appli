@@ -27,7 +27,7 @@
         function calculerNombreProduit(){
         $nbrTotal = 0;
         foreach($_SESSION['products'] as $index => $product){
-            $nbrTotal = $index;
+            $nbrTotal = $index + 1;
         }
         return $nbrTotal;
         }
