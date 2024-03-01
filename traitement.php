@@ -35,17 +35,32 @@ if(isset($_POST['submit'])){
         }
 
 }
-
+$id = (isset($_GET['id'])) ? $_GET['id'] : null;
 if(isset($_GET['action'])){
 
     switch($_GET['action']){
-        case "ajout":
-        case "supprimer":
-        case "suppTout":
-        case "ajoutQtt":
-        case "retirerQtt":
+        case "ajout": 
+            if(isset($_POST['submit'])){
+            $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+            $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+            $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT );
+        
+            if($name && $price && $qtt){
+        
+                $product = [
+                    "name" => $name,
+                    "price" => $price,
+                    "qtt" => $qtt,
+                    "total" => $price * $qtt,
+                ];
+        
+                $_SESSION['products'][]= $product;
+
+                $_SESSION['message'] = '<div class="alert alert-success" role="alert"> Votre produit à bien été enregistré ! </div>';
+                }
+                break;
     }
-}
+}}
 
 header("Location:index.php");
 

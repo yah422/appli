@@ -56,29 +56,29 @@
 
     <h1 class="text-primary font-weight-bold p-4 pb-0 pt-0 "> Ajouter un produit </h1>
     <div class="p-5 pt-0 pb-0" >
-    <form action="traitement.php" method="post">
+    <form action="traitement.php?action=add" method="post">
         <p>
             <label>
                 Nom du produit: <br>
-                <input class=" border-0" type="text" name="name">
+                <input id="" class=" border-0" type="text" name="name">
             </label>
         </p>
         <p>
             <label>
                 Prix du produit : <br>
-                <input class=" border-0" type="number" step="any" name="price">
+                <input id="" class=" border-0" type="number" step="any" name="price">
             </label>
         </p>
         <p>
             <label>
                 Quantité désirée: <br>
-                <input class=" border-0" type="number" name="qtt" value="1">
+                <input id="" class=" border-0" type="number" name="qtt" value="1">
             </label>
         </p>
     </div>
     <div d-flex align-item-center justify-content-center >
         <p class="p-4">
-                <input class="form-control bg-primary text-white text-center" style="width:200px; height:40px;" type="submit" name="submit" value="Ajouter le produit">    
+                <input id="" class="form-control bg-primary text-white text-center" style="width:200px; height:40px;" type="submit" name="submit" value="Ajouter le produit">    
         </p>
     </form>
     </div>
