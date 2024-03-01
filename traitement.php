@@ -62,8 +62,18 @@ if(isset($_GET['action'])){
                 }
                 break;
     }
-        
+        case "supprimer": 
+            foreach ($_SESSION['products'] as $index => $id) {
+                unset($_SESSION['products'][$id]);
+                break;
 
+    }
+
+        // case "suppTout": unset($_SESSION['products'])
+        // case "ajoutQtt": $_SESSION['qtt'];
+        // case "retirerQtt": unset($_SESSION['qtt'[]])
+
+        
 }}
 
 header("Location:index.php");
