@@ -32,7 +32,7 @@ session_start();
         echo "<p> Aucun produit en session ... </p>";
     }else {
         echo ' <div class=" text-uppercase, fs-1" style=" width:100%; height:200px; color:#1c6de2; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center;"> <strong> Votre Panier </strong> </div> ' ;
-        echo "<table class='table' style=' font-family: system-ui; width: 800px; height: auto; border: 2px solid #155eb5;' >",
+        echo "<table class='table' style=' font-family: system-ui; width: 900px; height: auto; border: 2px solid #155eb5;' >",
                 "<thead class='table-primary'>",
                     "<tr>",
                         "<th>#</th>",
@@ -40,7 +40,6 @@ session_start();
                         "<th>Prix</th>",
                         "<th>Quantité</th>",
                         "<th>Total</th>",
-                        "<th> </th>",
                 "</thead>",
                 "<tbody>";
         $totalGeneral = 0;
@@ -49,10 +48,8 @@ session_start();
                     "<td>".($index+=1)."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2,",","&nbsp")."&nbsp;€ </td> ",
-                    "<td>".$product['qtt']."</td>",
-                    "<td>".number_format($product['total'], 2,",","&nbsp")."&nbsp;€&nbsp;</td>",
-                    "<td>"."<button class='btn btn-primary' style='border-radius: 100px;' type='submit' name='remove' value=' echo $product;'>Supprimer</button> &nbsp;<button style='border-radius:100px;' type='submit' name='increase' value=' $product '>+</button> &nbsp;".
-                    "<button style='border-radius: 100px; width: 26.95px;' type='submit' name='decrease' value='$product'> - </button>"."</td>",
+                    "<td>".$product['qtt']."&nbsp; &nbsp;"."<a style='border-radius:15px;width: 20px; height: 25px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; ' class='btn btn-primary' href='traitement.php' role='button'>+</a>"."&nbsp;"."<a style='border-radius:15px; width: 20px; height: 25px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center;' class='btn btn-primary' href='traitement.php' role='button'>-</a>"."</td>",
+                    "<td>".number_format($product['total'], 2,",","&nbsp")."&nbsp;€&nbsp;"."<a style='border-radius:15px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; width:100px;' class='btn btn-primary' href='traitement.php' role='button'> Supprimer </a>"."</td>",
                 "</tr>";
             $totalGeneral += $product['total'];
             ($index-=1);

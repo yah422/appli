@@ -24,7 +24,7 @@
         </div>
     </div>
 </nav>
-   <section style="border:1px solid black; width:500px; height: 600px;     display: flex; justify-content: space-evenly; align-items: center; flex-direction: column;" >
+   <section style="border:1px solid blue; width:500px; height: 600px;     display: flex; justify-content: space-evenly; align-items: center; flex-direction: column;" >
     <div style="display: flex; gap:2" class="p-0">
 
         <div  class="d-grid gap-2 d-md-block">
@@ -36,6 +36,7 @@
         
         </div>
         <div style=" color:white; display:flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; border-radius:100px; background-color:red; width:30px; height:20px" >
+        
         <?php 
     
         session_start();
@@ -55,7 +56,7 @@
 
     <h1 class="text-primary font-weight-bold p-4 pb-0 pt-0 "> Ajouter un produit </h1>
     <div class="p-5 pt-0 pb-0" >
-    <form action="traitement.php?action=add" method="post">
+    <form action="traitement.php?action=ajout" method="post">
         <p>
             <label>
                 Nom du produit: <br>
@@ -71,17 +72,16 @@
         <p>
             <label>
                 Quantité désirée: <br>
-                <input id="" class=" border-0" type="number" name="qtt" value="1">
+                <input id="" class=" border-0" type="number" min="0" name="qtt" value="1">
             </label>
         </p>
     </div>
     <div d-flex align-item-center justify-content-center >
         <p class="p-4">
-                <input id="" class="form-control bg-primary text-white text-center" style="width:200px; height:40px;" type="submit" name="submit" value="Ajouter le produit">    
+                <input id="" class="form-control bg-primary text-white text-center" style="width:200px; height:40px;" type="submit" name="submit" href="index.php" value="Ajouter le produit">    
         </p>
     </form>
     </div>
-
 
         <?php 
 
