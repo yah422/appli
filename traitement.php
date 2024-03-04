@@ -2,7 +2,8 @@
 
 session_start();
 
-
+$id = isset($_GET['id']) ? $_GET['id'] : null ;
+var_dump($_SESSION['products'][$id]);
 if(isset($_GET['action'])){
 
     switch($_GET['action']){
@@ -27,42 +28,61 @@ if(isset($_GET['action'])){
                     } else {
                         $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Votre produit n\'a pas été enregistré !  </div>';
                     }
+
+                    header("Location:index.php");
             }
+            die;
             break;
+
         case "supprimer": 
-            if (isset($_SESSION['products'][$indice])) {
-                unset($_SESSION['products'][$indice]);
+            if (isset($_SESSION['products'][$id])) {
+                unset($_SESSION['products'][$id]);
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert"> Le produit a été supprimé avec succès ! </div>';
             } else {
                 $_SESSION['message'] = '<div class="alert alert-danger" role="alert"> L\'indice du produit à supprimer n\'existe pas ! </div>';
+             
             }
+
+            header("Location:recap.php");die;
             break;
+
         case "toutSupp":
-            if (isset($_SESSION['products'][$indice])) {
-                unset($_SESSION['products'][$indice]);
+            if (isset($_SESSION['products'])) {
+                unset($_SESSION['products']);
+                header("Location:recap.php");
             }
+            die;
+            
             break;
+
         case "ajoutQtt":
-            if (isset($_SESSION['products'][$indice])) {
-                $_SESSION['products'][$indice]['qtt']++;
+            if (isset($_SESSION['products'])) {
+                $_SESSION['products'][$id]['qtt']++;
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert"> La quantité a été augmentée avec succès ! </div>';
             } else {
                 $_SESSION['message'] = '<div class="alert alert-danger" role="alert"> L\'indice du produit à mettre à jour n\'existe pas ! </div>';
+               
             }
+            header("Location:recap.php");die;
             break;
+
         case "retirerQtt":
-            if (isset($_SESSION['products'][$indice]) && $_SESSION['products'][$indice]['qtt'] > 1) {
-                $_SESSION['products'][$indice]['qtt']--;
+            if (isset($_SESSION['products']) && $_SESSION['products'][$id] > 1) {
+                $_SESSION['products'][$id]['qtt']--;
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert"> La quantité a été diminuée avec succès ! </div>';
             } else {
                 $_SESSION['message'] = '<div class="alert alert-warning" role="alert"> Opération non autorisée. </div>';
+                
+                
             }
+            header("Location:recap.php");die;
+            
             break;
     }
 
     }
 
-header("Location:index.php");
+// header("Location:recap.php");
 
 ?>
 

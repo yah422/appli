@@ -42,11 +42,14 @@
         session_start();
 
         function calculerNombreProduit(){
-        $nbrTotal = 0;
-        foreach($_SESSION['products'] as $index => $product){
-            $nbrTotal = $index + 1;
-        }
-        return $nbrTotal;
+            $nbrTotal = 0;
+            if (isset($_SESSION['products']) && !empty($_SESSION['products'])){
+
+                foreach($_SESSION['products'] as $index => $product){
+                    $nbrTotal = $index + 1;
+                }
+            }
+            return $nbrTotal;
         }
     
         echo calculerNombreProduit(); ?>

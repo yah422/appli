@@ -45,14 +45,13 @@ session_start();
         $totalGeneral = 0;
         foreach($_SESSION['products'] as $index => $product){
             echo "<tr>",
-                    "<td>".($index+=1)."</td>",
+                    "<td>".($index)."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2,",","&nbsp")."&nbsp;€ </td> ",
-                    "<td>".$product['qtt']."&nbsp; &nbsp;"."<a style='border-radius:15px;width: 20px; height: 25px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; ' class='btn btn-primary' href='traitement.php' role='button'>+</a>"."&nbsp;"."<a style='border-radius:15px; width: 20px; height: 25px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center;' class='btn btn-primary' href='traitement.php' role='button'>-</a>"."</td>",
-                    "<td>".number_format($product['total'], 2,",","&nbsp")."&nbsp;€&nbsp;"."<a style='border-radius:15px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; width:100px;' class='btn btn-primary' href='traitement.php' role='button'> Supprimer </a>"."</td>",
+                    "<td>".$product['qtt']."&nbsp; &nbsp;"."<a style='border-radius:15px;width: 20px; height: 25px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; ' class='btn btn-primary' href='traitement.php?action=ajoutQtt&id=".$index."' role='button'>+</a>"."&nbsp;"."<a style='border-radius:15px; width: 20px; height: 25px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center;' class='btn btn-primary' href='traitement.php?action=retirerQtt&id=".$index."' role='button'>-</a>"."</td>",
+                    "<td>".number_format($product['total'], 2,",","&nbsp")."&nbsp;€&nbsp;"."<a style='border-radius:15px; display: flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; width:100px;' class='btn btn-primary' href='traitement.php?action=supprimer&id=".$index."' role='button'> Supprimer </a>"."</td>",
                 "</tr>";
             $totalGeneral += $product['total'];
-            ($index-=1);
         }
         echo "<tr>",
                 "<td colspan=4><strong> Total général : </strong> </td>",
@@ -61,10 +60,11 @@ session_start();
             "</tbody>",
             "</table>";
     }
+
     echo 
         '<div style="display:flex; gap:400px; "> 
             <button  type="button" class="btn btn-primary"> <a style="text-decoration:none; color: white;"  href="index.php">  &#x2190; Retour </a> </button>
-            <button class="btn btn-primary" style="border-radius: 5px;" type="submit" name="clear"> Vider le panier </button>
+            <button class="btn btn-primary" style="border-radius: 5px;" type="submit" name="clear"> <a style="text-decoration:none; color: white;" href=traitement.php?action=toutSupp> Vider le panier <a> </button>
         </div>';
     ?>
 
