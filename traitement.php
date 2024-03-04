@@ -66,21 +66,24 @@ if(isset($_GET['action'])){
             header("Location:recap.php");die;
             
 
-        case "retirerQtt":
-            if (isset($_SESSION['products']) && $_SESSION['products'][$id] > 1) {
-                $_SESSION['products'][$id]['qtt']--;
-                $_SESSION['message'] = '<div class="alert alert-success" role="alert"> La quantité a été diminuée avec succès ! </div>';
-            } else {
-                $_SESSION['message'] = '<div class="alert alert-warning" role="alert"> Opération non autorisée. </div>';
-                
-                break;
-            }
-            header("Location:recap.php");die;
+            case "retirerQtt":
+                if (isset($_SESSION['products']) && isset($_SESSION['products'][$id]) && $_SESSION['products'][$id]['qtt'] > 0) {
+                    $_SESSION['products'][$id]['qtt']--;
+            
+                    if ($_SESSION['products'][$id]['qtt'] == 0) {
+                        unset($_SESSION['products'][$id]);
+                        $_SESSION['message'] = '<div class="alert alert-success" role="alert">Le produit a été supprimé avec succès !</div>';
+                    } else {
+                        $_SESSION['message'] = '<div class="alert alert-success" role="alert">La quantité a été diminuée avec succès !</div>';
+                    }
+                } else {
+                    $_SESSION['message'] = '<div class="alert alert-warning" role="alert">Opération non autorisée.</div>';
+                  break;  
+                }
+                header("Location:recap.php");die;
     }
 
     }
 
-// header("Location:recap.php");
 
 ?>
-
