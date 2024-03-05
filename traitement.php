@@ -2,6 +2,21 @@
 session_start();
 ob_start();
 
+if (isset($_POST['submit'])) {
+   
+    if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
+        $uploadDir = 'uploads/';
+        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+ 
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+      
+            $product['image'] = $uploadFile;
+        } else {
+            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Erreur lors de l\'upload de l\'image.</div>';
+        }
+    }
+    
+}
 $id = isset($_GET['id']) ? $_GET['id'] : null ;
 if(isset($_GET['action'])){
 
