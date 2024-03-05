@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+ob_start();
 
 $id = isset($_GET['id']) ? $_GET['id'] : null ;
 if(isset($_GET['action'])){
@@ -71,12 +71,12 @@ if(isset($_GET['action'])){
             
                     if ($_SESSION['products'][$id]['qtt'] == 0) {
                         unset($_SESSION['products'][$id]);
-                        $_SESSION['message'] = '<div class="alert alert-success" role="alert">Le produit a été supprimé avec succès !</div>';
+                        $_SESSION['message'] = '<div style="display:flex;" class="alert alert-success" role="alert">Le produit a été supprimé avec succès !</div>';
                     } else {
-                        $_SESSION['message'] = '<div class="alert alert-success" role="alert">La quantité a été diminuée avec succès !</div>';
+                        $_SESSION['message'] = '<div style="display:flex;" class="alert alert-success" role="alert">La quantité a été diminuée avec succès !</div>';
                     }
                 } else {
-                    $_SESSION['message'] = '<div class="alert alert-warning" role="alert">Opération non autorisée.</div>';
+                    $_SESSION['message'] = '<div style="display:flex;" class="alert alert-warning" role="alert">Opération non autorisée.</div>';
                     
                 }
                 header("Location:recap.php");die;
@@ -84,6 +84,10 @@ if(isset($_GET['action'])){
     }
 
     }
+    ?>
+    <?php
+    $content = ob_get_clean();
+    $title = "Ajout produit";
+    require_once "template.php"; ?>
 
 
-?>
