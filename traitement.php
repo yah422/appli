@@ -2,21 +2,6 @@
 session_start();
 ob_start();
 
-if (isset($_POST['submit'])) {
-   
-    if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
-        $uploadDir = 'uploads/';
-        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
- 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-      
-            $product['image'] = $uploadFile;
-        } else {
-            $_SESSION['message'] = '<div class="alert alert-danger" role="alert">Erreur lors de l\'upload de l\'image.</div>';
-        }
-    }
-    
-}
 $id = isset($_GET['id']) ? $_GET['id'] : null ;
 if(isset($_GET['action'])){
 
@@ -72,6 +57,7 @@ if(isset($_GET['action'])){
         case "ajoutQtt":
             if (isset($_SESSION['products'])) {
                 $_SESSION['products'][$id]['qtt']++;
+                $_SESSION['products'][$id]['total'] = $_SESSION['products'][$id]['qtt']*$_SESSION['products'][$id]['price'];
                 $_SESSION['message'] = '<div class="alert alert-success" role="alert"> La quantité a été augmentée avec succès ! </div>';
             } else {
                 $_SESSION['message'] = '<div class="alert alert-danger" role="alert"> L\'indice du produit à mettre à jour n\'existe pas ! </div>';
@@ -83,7 +69,7 @@ if(isset($_GET['action'])){
             case "retirerQtt":
                 if (isset($_SESSION['products']) && isset($_SESSION['products'][$id]) && $_SESSION['products'][$id]['qtt'] > 0) {
                     $_SESSION['products'][$id]['qtt']--;
-            
+                    $_SESSION['products'][$id]['total'] = $_SESSION['products'][$id]['qtt']*$_SESSION['products'][$id]['price'];
                     if ($_SESSION['products'][$id]['qtt'] == 0) {
                         unset($_SESSION['products'][$id]);
                         $_SESSION['message'] = '<div style="display:flex;" class="alert alert-success" role="alert">Le produit a été supprimé avec succès !</div>';

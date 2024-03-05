@@ -22,7 +22,6 @@ ob_start();
         foreach($_SESSION['products'] as $index => $product){
             
             echo "<tr>",
-                    "<td><img src='{$product['image']}' alt='{$product['name']}' style='max-width: 100px; max-height: 100px;'></td>",
                     "<td>".($index)."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2,",","&nbsp")."&nbsp;€ </td> ",

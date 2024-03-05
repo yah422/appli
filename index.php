@@ -37,12 +37,7 @@
     <h1 class="text-primary font-weight-bold p-4 pb-0 pt-0 "> Ajouter un produit </h1>
     <div class="p-5 pt-0 pb-0" >
     <form action="traitement.php?action=ajout" method="post" enctype="multipart/form-data">    
-        <p>
-            <label>
-                Image du produit : <br>
-                <input type="file" name="image" accept="image/*">
-            </label>
-        </p>
+       
         <p>
             <label>
                 Nom du produit: <br>
