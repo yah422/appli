@@ -66,6 +66,11 @@ session_start();
             <button  type="button" class="btn btn-primary"> <a style="text-decoration:none; color: white;"  href="index.php">  &#x2190; Retour </a> </button>
             <button class="btn btn-primary" style="border-radius: 5px;" type="submit" name="clear"> <a style="text-decoration:none; color: white;" href=traitement.php?action=toutSupp> Vider le panier <a> </button>
         </div>';
+
+        if(isset($_SESSION['message'])){
+            echo $_SESSION['message'];
+            unset($_SESSION['message']); 
+        }
     ?>
 
     
