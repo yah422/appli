@@ -29,7 +29,6 @@ if(isset($_GET['action'])){
                     if(in_array($extension, $extesionAutorisees) && $size <= $tailleMax && $error == 0){
                         $uniqueName = uniqid('',true);
                         $fileName = $uniqueName. '.' .$extension;
-                        // var_dump("/images/".$fileName);die;
                         move_uploaded_file($tmpName, './images/'.$fileName);
                     }
                 }
