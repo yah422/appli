@@ -4,6 +4,7 @@ ob_start();
 ?>
 
     <?php
+
     if(!isset($_SESSION['products']) || empty($_SESSION['products'])){
         echo "<p> Aucun produit en session ... </p>";
     }else {
@@ -55,5 +56,3 @@ $title = "Récapitulatif Produit";
 $content = ob_get_clean();
 require_once "template.php"; 
 ?>
-
-    

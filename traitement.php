@@ -11,14 +11,34 @@ if(isset($_GET['action'])){
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT );
+                $image = "image/";
+                //upload image
+                $name = $_FILES['file']['name'];
+                $size = $_FILES['file']['size'];
+                $error = $_FILES['file']['error'];
+                $type = $_FILES['file']['type'];
             
-                if($name && $price && $qtt){
+                $tabExtension = explode('.',$name);
+                $extension = strtolower(end($tabExtension));
+                $tailleMax = 200000;
+                $extesionAutorisees = ['jpg','jpeg','gif','png'];
+
+                $uniqueName = uniqid('',true);
+                $fileName = $uniqueName. '.' .$extension;
+                $chemin = "images/";
+                move_uploaded_file("{$fileName}","{$chemin}");
+
+                
+            
+                if($name && $price && $qtt && $image){
             
                     $product = [
                         "name" => $name,
                         "price" => $price,
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
+                        "image" => $image,
+                        
                     ];
             
                     $_SESSION['products'][]= $product;
