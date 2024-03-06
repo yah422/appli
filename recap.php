@@ -1,6 +1,8 @@
 <?php
 session_start();
 ob_start();
+
+var_dump($_SESSION);
 ?>
 
     <?php
@@ -13,6 +15,7 @@ ob_start();
                 "<thead class='table-primary'>",
                     "<tr>",
                         "<th>#</th>",
+                        "<th>Image</th>",
                         "<th>Nom</th>",
                         "<th>Prix</th>",
                         "<th>Quantité</th>",
@@ -21,9 +24,10 @@ ob_start();
                 "<tbody>";
         $totalGeneral = 0;
         foreach($_SESSION['products'] as $index => $product){
-            
+            $img = $product["image"];
             echo "<tr>",
                     "<td>".($index)."</td>",
+                    "<td><img src='images/$img' alt=''></td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2,",","&nbsp")."&nbsp;€ </td> ",
                     "<td>".$product['qtt']."&nbsp; &nbsp;"."<a id='qtt' class='btn btn-primary' href='traitement.php?action=ajoutQtt&id=".$index."' role='button'>+</a>"."&nbsp;"."<a id='qtt' class='btn btn-primary' href='traitement.php?action=retirerQtt&id=".$index."' role='button'>-</a>"."</td>",
@@ -31,6 +35,7 @@ ob_start();
                 "</tr>";
             $totalGeneral += $product['total'];
         }
+
         echo "<tr>",
                 "<td colspan=4><strong> Total général : </strong> </td>",
                 "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</strong></td>",

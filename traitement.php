@@ -8,7 +8,7 @@ if(isset($_GET['action'])){
     switch($_GET['action']){
         case "ajout":
             if(isset($_POST['submit'])){
-                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+                $nameProduct = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT );
                 $image = "image/";
@@ -38,11 +38,11 @@ if(isset($_GET['action'])){
                 if($name && $price && $qtt && $image){
             
                     $product = [
-                        "name" => $name,
+                        "name" => $nameProduct,
                         "price" => $price,
                         "qtt" => $qtt,
                         "total" => $price * $qtt,
-                        "image" => $image,
+                        "image" => $fileName,
                         
                     ];
             
