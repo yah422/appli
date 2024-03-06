@@ -94,7 +94,11 @@ section {
     display:flex; 
     gap:400px;
 }
+#imgg {
+    width: 100px;
+    height: 80px;
 
+ }
 
 /* -------------------- TRAITEMENT --------------- */
 #message {

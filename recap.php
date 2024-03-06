@@ -25,7 +25,7 @@ ob_start();
             $img = $product["image"];
             echo "<tr>",
                     "<td>".($index)."</td>",
-                    "<td><img src='images/$img' alt=''></td>",
+                    "<td><img src='images/$img' id='imgg' alt=''></td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2,",","&nbsp")."&nbsp;€ </td> ",
                     "<td>".$product['qtt']."&nbsp; &nbsp;"."<a id='qtt' class='btn btn-primary' href='traitement.php?action=ajoutQtt&id=".$index."' role='button'>+</a>"."&nbsp;"."<a id='qtt' class='btn btn-primary' href='traitement.php?action=retirerQtt&id=".$index."' role='button'>-</a>"."</td>",
