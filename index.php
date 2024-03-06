@@ -3,18 +3,18 @@
     ob_start();
     ?>
 
-    <section style="border:1px solid blue; width:500px; height: 600px; display: flex; justify-content: space-evenly; align-items: center; flex-direction: column;" >
-    <div style="display: flex; gap:2" class="p-0">
+    <section>
+    <div id="divSection" class="p-0">
 
         <div  class="d-grid gap-2 d-md-block">
-        <button type="button" class="btn btn-primary"> <a style="text-decoration:none; color: white;"  href="index.php"> Ajouter produit </a> </button>
+        <button type="button" class="btn btn-primary"> <a id="btn"  href="index.php"> Ajouter produit </a> </button>
        
 
-        <button type="button" class="btn btn-white text-primary" > <a style="text-decoration:none;" href="recap.php">
+        <button type="button" class="btn btn-white text-primary" > <a id="aPanier" href="recap.php">
          Panier </a>  </button> 
         
         </div>
-        <div style=" color:white; display:flex; flex-direction: row; align-content: center; justify-content: center; align-items: center; border-radius:100px; background-color:red; width:30px; height:20px" >
+        <div id="divFunction" >
         
         <?php 
     
@@ -63,7 +63,7 @@
     </div>
     <div d-flex align-item-center justify-content-center >
         <p class="p-4">
-                <input id="" class="form-control bg-primary text-white text-center" style="width:200px; height:40px;" type="submit" name="submit" href="index.php" value="Ajouter le produit">    
+                <input id="i" class="form-control bg-primary text-white text-center" type="submit" name="submit" href="index.php" value="Ajouter le produit">    
         </p>
     </form>
     </div>

@@ -6,17 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $title ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body style="display:flex; flex-direction: row; align-content: center; justify-content: center; align-items: center;">
+<body>
     <div id="wrapper">
-    <nav class="navbar mb-4" style="background-color: #e3f2fd; width:100%;">
-        <div class="container-fluid m-1" style=" display:flex; flex-direction: row; align-content: center; justify-content: space-evenly; align-items: center;">
-            <div style="display:flex;">
+    <nav class="navbar mb-4">
+        <div id="container" class="container-fluid m-1">
+            <div id="dbdiv">
                 <a class="navbar-brand" href="#"> Application PHP </a>
             </div>
-            <div style="display:flex;">
-                <ul class="navbar-nav" style="display:flex; flex-direction:row; gap:50px;">
+            <div id="dbdiv">
+                <ul id ="uls" class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php"> Accueil </a>
                     </li>

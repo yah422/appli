@@ -12,23 +12,28 @@ if(isset($_GET['action'])){
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT );
                 $image = "image/";
+
                 //upload image
-                $name = $_FILES['file']['name'];
-                $size = $_FILES['file']['size'];
-                $error = $_FILES['file']['error'];
-                $type = $_FILES['file']['type'];
-            
-                $tabExtension = explode('.',$name);
-                $extension = strtolower(end($tabExtension));
-                $tailleMax = 200000;
-                $extesionAutorisees = ['jpg','jpeg','gif','png'];
+                if(isset($_FILES['file'])){
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
+                    $type = $_FILES['file']['type'];
+                    
+                    $tabExtension = explode('.',$name);
+                    $extension = strtolower(end($tabExtension));
+                    $tailleMax = 200000;
+                    $extesionAutorisees = ['jpg','jpeg','gif','png'];
+                    
+                    if(in_array($extension, $extesionAutorisees) && $size <= $tailleMax && $error == 0){
+                        $uniqueName = uniqid('',true);
+                        $fileName = $uniqueName. '.' .$extension;
+                        // var_dump("/images/".$fileName);die;
+                        move_uploaded_file($tmpName, './images/'.$fileName);
+                    }
+                }
 
-                $uniqueName = uniqid('',true);
-                $fileName = $uniqueName. '.' .$extension;
-                $chemin = "images/";
-                move_uploaded_file("{$fileName}","{$chemin}");
-
-                
             
                 if($name && $price && $qtt && $image){
             
@@ -92,12 +97,12 @@ if(isset($_GET['action'])){
                     $_SESSION['products'][$id]['total'] = $_SESSION['products'][$id]['qtt']*$_SESSION['products'][$id]['price'];
                     if ($_SESSION['products'][$id]['qtt'] == 0) {
                         unset($_SESSION['products'][$id]);
-                        $_SESSION['message'] = '<div style="display:flex;" class="alert alert-success" role="alert">Le produit a été supprimé avec succès !</div>';
+                        $_SESSION['message'] = '<div  id="message" class="alert alert-success" role="alert">Le produit a été supprimé avec succès !</div>';
                     } else {
-                        $_SESSION['message'] = '<div style="display:flex;" class="alert alert-success" role="alert">La quantité a été diminuée avec succès !</div>';
+                        $_SESSION['message'] = '<div  id="message" class="alert alert-success" role="alert">La quantité a été diminuée avec succès !</div>';
                     }
                 } else {
-                    $_SESSION['message'] = '<div style="display:flex;" class="alert alert-warning" role="alert">Opération non autorisée.</div>';
+                    $_SESSION['message'] = '<div id="message"  class="alert alert-warning" role="alert">Opération non autorisée.</div>';
                     
                 }
                 header("Location:recap.php");die;
